@@ -24,6 +24,8 @@ import jennom.jms.JmsExceptionListener;
 import net.timewalker.ffmq4.FFMQConstants;
 import net.timewalker.ffmq4.local.FFMQEngine;
 import net.timewalker.ffmq4.spring.FFMQServerBean;
+import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
+import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
 //import net.timewalker.ffmq4.spring.FFMQServerBean;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.jms.connection.CachingConnectionFactory;
@@ -50,6 +52,11 @@ public class AppContext {
             Logger.getLogger(AppContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         engine.getName();*/
+    } 
+    
+    @Bean
+    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+        return new SimpleAsyncUncaughtExceptionHandler();
     }    
 
     @Bean
